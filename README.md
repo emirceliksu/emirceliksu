@@ -18,6 +18,14 @@
 <!-- BADGES -->
 <img src="https://komarev.com/ghpvc/?username=emirceliksu&label=SYSTEM+PINGS&color=ff0040&style=for-the-badge&labelColor=0a0009" />
 &nbsp;
+<a href="https://github.com/emirceliksu?tab=followers">
+  <img src="https://img.shields.io/github/followers/emirceliksu?label=FOLLOWERS&style=for-the-badge&color=ff0040&labelColor=0a0009&logo=github&logoColor=white" />
+</a>
+&nbsp;
+<a href="https://github.com/emirceliksu?tab=following">
+  <img src="https://img.shields.io/github/following/emirceliksu?label=FOLLOWING&style=for-the-badge&color=ff0040&labelColor=0a0009&logo=github&logoColor=white" />
+</a>
+&nbsp;
 <img src="https://img.shields.io/badge/STATUS-ONLINE-ff0040?style=for-the-badge&labelColor=0a0009&logo=statuspage&logoColor=ff0040"/>
 
 </div>
@@ -104,21 +112,12 @@
 
 </div>
 
-<!-- GITHUB STATS -->
+<!-- SYSTEM METRICS -->
 <div align="center">
 
 ### `[ SYSTEM METRICS ]`
 
-<img height="175em" src="https://github-readme-stats.vercel.app/api?username=emirceliksu&show_icons=true&theme=blood_dark&include_all_commits=true&count_private=true&hide_border=true&bg_color=06000d&title_color=ff0040&icon_color=ff0040&text_color=c9d1d9"/>
-<img height="175em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=emirceliksu&layout=compact&langs_count=8&hide_border=true&bg_color=06000d&title_color=ff0040&text_color=c9d1d9"/>
-
-<br/>
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=emirceliksu&theme=blood_dark&hide_border=true&background=06000d&ring=ff0040&fire=ff0040&currStreakLabel=ff0040&sideLabels=ff0040&dates=888"/>
-
-<br/>
-
-<img src="https://github-profile-trophy.vercel.app/?username=emirceliksu&theme=darkhub&no-frame=true&row=1&column=7&margin-w=6"/>
+<img src="./assets/stats.svg" width="100%" alt="system metrics"/>
 
 </div>
 
@@ -127,11 +126,7 @@
 
 ### `[ NETWORK ACTIVITY ]`
 
-<picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="https://raw.githubusercontent.com/emirceliksu/emirceliksu/output/github-contribution-grid-snake-dark.svg"/>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/emirceliksu/emirceliksu/output/github-contribution-grid-snake.svg"/>
-  <img alt="contribution snake" src="https://raw.githubusercontent.com/emirceliksu/emirceliksu/output/github-contribution-grid-snake-dark.svg"/>
-</picture>
+<img src="./assets/snake.svg" width="100%" alt="contribution snake"/>
 
 </div>
 
@@ -139,8 +134,6 @@
 <img src="./assets/matrix.svg" width="100%" alt="matrix footer"/>
 
 <div align="center">
-
-![footer](https://capsule-render.vercel.app/api?type=waving&color=0:06000d,40:1a0010,100:06000d&height=100&section=footer&fontColor=ff0040)
 
 `[ CONNECTION TERMINATED ]`
 
