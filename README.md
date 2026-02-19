@@ -41,14 +41,7 @@
 
 <br/><br/>
 
-```
-+------------------------------------------------------------------+
-|  > OPERATOR  : Muhammed Emir Celiksu                            |
-|  > CLASS     : Full Stack Dev  //  Cybersecurity Researcher     |
-|  > CLEARANCE : RED TEAM  [##########]  100%                     |
-|  > LOCATION  : Turkey [ UTC+3 ]  .  ONLINE                     |
-+------------------------------------------------------------------+
-```
+<img src="./assets/operator_card.svg" width="100%" alt="operator card"/>
 
 </div>
 
