@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 140" style="background:#06000d;">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 140" style="background:#06000d;">
   <defs>
     <filter id="glow">
       <feGaussianBlur stdDeviation="2.5" result="b"/>
@@ -369,7 +369,7 @@
   <!-- Snake rendered as a polyline that traces a path, with gradient color head->tail -->
   <!-- We'll animate an SVG path with stroke-dashoffset trick -->
 
-  <!-- Snake body: a long animated polyline -->
+  <!-- ═══ SNAKE BODY ═══ -->
   <polyline id="snake-path"
     points="
       86,40 100,40 114,40 128,40 142,40 156,40 170,40 184,40 198,40 212,40 226,40 240,40 254,40 268,40 282,40 296,40 310,40 324,40 338,40 352,40 366,40 380,40 394,40 408,40 422,40 436,40 450,40 464,40 478,40 492,40 506,40 520,40 534,40 548,40 562,40 576,40 590,40 604,40 618,40 632,40 646,40 660,40 674,40 688,40 702,40 716,40 730,40 744,40 758,40 772,40 786,40 800,40
@@ -379,30 +379,168 @@
       86,104 100,104 114,104 128,104 142,104 156,104 170,104 184,104 198,104 212,104 226,104 240,104 254,104 268,104 282,104 296,104 310,104 324,104 338,104 352,104 366,104 380,104 394,104 408,104 422,104 436,104 450,104 464,104 478,104 492,104 506,104 520,104 534,104 548,104 562,104 576,104 590,104 604,104 618,104 632,104 646,104 660,104 674,104 688,104 702,104 716,104 730,104 744,104 758,104 772,104 786,104 800,104
       800,120 786,120 772,120 758,120 744,120 730,120 716,120 702,120 688,120 674,120 660,120 646,120 632,120 618,120 604,120 590,120 576,120 562,120 548,120 534,120 520,120 506,120 492,120 478,120 464,120 450,120 436,120 422,120 408,120 394,120 380,120 366,120 352,120 338,120 324,120 310,120 296,120 282,120 268,120 254,120 240,120 226,120 212,120 198,120 184,120 170,120 156,120 142,120 128,120 114,120 100,120 86,120
     "
-    fill="none"
-    stroke="#39ff14"
-    stroke-width="10"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    opacity="0.85"
-    filter="url(#glow)"
-    stroke-dasharray="100 10000"
-    stroke-dashoffset="0">
-    <!-- Animate dashoffset to move snake along path -->
+    fill="none" stroke="#39ff14" stroke-width="10"
+    stroke-linecap="round" stroke-linejoin="round"
+    opacity="0.85" filter="url(#glow)"
+    stroke-dasharray="112 10000" stroke-dashoffset="0">
     <animate attributeName="stroke-dashoffset" from="0" to="-14820" dur="40s" repeatCount="indefinite" calcMode="linear"/>
   </polyline>
 
-  <!-- Snake head highlight (brighter dot that leads) -->
-  <circle r="7" fill="#00ffff" filter="url(#glow)" opacity="0.9">
-    <animateMotion
-      dur="40s"
-      repeatCount="indefinite"
-      calcMode="linear"
+  <!-- ═══ SNAKE HEAD ═══ -->
+  <circle r="8" fill="#00ffff" filter="url(#glow)" opacity="0.95">
+    <animateMotion dur="40s" repeatCount="indefinite" calcMode="linear"
+      path="M86,40 L800,40 L800,56 L86,56 L86,72 L800,72 L800,88 L86,88 L86,104 L800,104 L800,120 L86,120"/>
+  </circle>
+  <!-- Head inner glow -->
+  <circle r="4" fill="#ffffff" opacity="0.6">
+    <animateMotion dur="40s" repeatCount="indefinite" calcMode="linear"
       path="M86,40 L800,40 L800,56 L86,56 L86,72 L800,72 L800,88 L86,88 L86,104 L800,104 L800,120 L86,120"/>
   </circle>
 
-  <!-- Snake "eaten" cells light up as snake passes - done via the snake stroke covering cells -->
+  <!-- ═══════════════════════════════════════
+       FOOD DOTS + RIPPLES + MESSAGES
+       Timing (40s cycle, 109.1 px/s):
+       dot1 (500,40)  eaten @ t=3.795s  frac=0.09488
+       dot2 (280,56)  eaten @ t=11.456s frac=0.28640
+       dot3 (620,72)  eaten @ t=18.278s frac=0.45695
+       dot4 (190,88)  eaten @ t=25.664s frac=0.64160
+       dot5 (560,104) eaten @ t=31.109s frac=0.77773
+  ════════════════════════════════════════ -->
+
+  <!-- ── DOT 1: (500,40) ── -->
+  <!-- Pulsing ring around dot -->
+  <circle cx="500" cy="40" r="7" fill="none" stroke="#0088ff" stroke-width="1.5" opacity="0">
+    <animate attributeName="r"       dur="1.2s" values="7;12;7" repeatCount="indefinite"/>
+    <animate attributeName="opacity" dur="40s"  repeatCount="indefinite" calcMode="linear"
+      values="0.5;0.5;0;0" keyTimes="0;0.09487;0.09488;1"/>
+  </circle>
+  <!-- Dot body -->
+  <circle cx="500" cy="40" r="7" fill="#00aaff" filter="url(#glow)">
+    <animate attributeName="r"       dur="0.8s" values="7;9;7" repeatCount="indefinite"/>
+    <animate attributeName="opacity" dur="40s"  repeatCount="indefinite" calcMode="linear"
+      values="1;1;0;0" keyTimes="0;0.09487;0.09488;1"/>
+  </circle>
+  <!-- Eat ripple -->
+  <circle cx="500" cy="40" r="8" fill="none" stroke="#00ffff" stroke-width="2" opacity="0">
+    <animate attributeName="r"       dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="8;8;8;22" keyTimes="0;0.09487;0.09489;0.10989"/>
+    <animate attributeName="opacity" dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="0;0;0.9;0" keyTimes="0;0.09487;0.09489;0.10989"/>
+  </circle>
+
+  <!-- ── DOT 2: (280,56) ── -->
+  <circle cx="280" cy="56" r="7" fill="none" stroke="#0088ff" stroke-width="1.5" opacity="0">
+    <animate attributeName="r"       dur="1.2s" values="7;12;7" repeatCount="indefinite"/>
+    <animate attributeName="opacity" dur="40s"  repeatCount="indefinite" calcMode="linear"
+      values="0;0;0.5;0.5;0;0" keyTimes="0;0.09487;0.09488;0.28639;0.28640;1"/>
+  </circle>
+  <circle cx="280" cy="56" r="7" fill="#00aaff" filter="url(#glow)">
+    <animate attributeName="r"       dur="0.8s" values="7;9;7" repeatCount="indefinite"/>
+    <animate attributeName="opacity" dur="40s"  repeatCount="indefinite" calcMode="linear"
+      values="0;0;1;1;0;0" keyTimes="0;0.09487;0.09488;0.28639;0.28640;1"/>
+  </circle>
+  <circle cx="280" cy="56" r="8" fill="none" stroke="#00ffff" stroke-width="2" opacity="0">
+    <animate attributeName="r"       dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="8;8;8;22" keyTimes="0;0.28638;0.28640;0.30140"/>
+    <animate attributeName="opacity" dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="0;0;0.9;0" keyTimes="0;0.28638;0.28640;0.30140"/>
+  </circle>
+
+  <!-- ── DOT 3: (620,72) ── -->
+  <circle cx="620" cy="72" r="7" fill="none" stroke="#0088ff" stroke-width="1.5" opacity="0">
+    <animate attributeName="r"       dur="1.2s" values="7;12;7" repeatCount="indefinite"/>
+    <animate attributeName="opacity" dur="40s"  repeatCount="indefinite" calcMode="linear"
+      values="0;0;0.5;0.5;0;0" keyTimes="0;0.28639;0.28640;0.45694;0.45695;1"/>
+  </circle>
+  <circle cx="620" cy="72" r="7" fill="#00aaff" filter="url(#glow)">
+    <animate attributeName="r"       dur="0.8s" values="7;9;7" repeatCount="indefinite"/>
+    <animate attributeName="opacity" dur="40s"  repeatCount="indefinite" calcMode="linear"
+      values="0;0;1;1;0;0" keyTimes="0;0.28639;0.28640;0.45694;0.45695;1"/>
+  </circle>
+  <circle cx="620" cy="72" r="8" fill="none" stroke="#00ffff" stroke-width="2" opacity="0">
+    <animate attributeName="r"       dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="8;8;8;22" keyTimes="0;0.45693;0.45695;0.47195"/>
+    <animate attributeName="opacity" dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="0;0;0.9;0" keyTimes="0;0.45693;0.45695;0.47195"/>
+  </circle>
+
+  <!-- ── DOT 4: (190,88) ── -->
+  <circle cx="190" cy="88" r="7" fill="none" stroke="#0088ff" stroke-width="1.5" opacity="0">
+    <animate attributeName="r"       dur="1.2s" values="7;12;7" repeatCount="indefinite"/>
+    <animate attributeName="opacity" dur="40s"  repeatCount="indefinite" calcMode="linear"
+      values="0;0;0.5;0.5;0;0" keyTimes="0;0.45694;0.45695;0.64159;0.64160;1"/>
+  </circle>
+  <circle cx="190" cy="88" r="7" fill="#00aaff" filter="url(#glow)">
+    <animate attributeName="r"       dur="0.8s" values="7;9;7" repeatCount="indefinite"/>
+    <animate attributeName="opacity" dur="40s"  repeatCount="indefinite" calcMode="linear"
+      values="0;0;1;1;0;0" keyTimes="0;0.45694;0.45695;0.64159;0.64160;1"/>
+  </circle>
+  <circle cx="190" cy="88" r="8" fill="none" stroke="#00ffff" stroke-width="2" opacity="0">
+    <animate attributeName="r"       dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="8;8;8;22" keyTimes="0;0.64158;0.64160;0.65660"/>
+    <animate attributeName="opacity" dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="0;0;0.9;0" keyTimes="0;0.64158;0.64160;0.65660"/>
+  </circle>
+
+  <!-- ── DOT 5: (560,104) ── -->
+  <circle cx="560" cy="104" r="7" fill="none" stroke="#0088ff" stroke-width="1.5" opacity="0">
+    <animate attributeName="r"       dur="1.2s" values="7;12;7" repeatCount="indefinite"/>
+    <animate attributeName="opacity" dur="40s"  repeatCount="indefinite" calcMode="linear"
+      values="0;0;0.5;0.5;0;0" keyTimes="0;0.64159;0.64160;0.77772;0.77773;1"/>
+  </circle>
+  <circle cx="560" cy="104" r="7" fill="#00aaff" filter="url(#glow)">
+    <animate attributeName="r"       dur="0.8s" values="7;9;7" repeatCount="indefinite"/>
+    <animate attributeName="opacity" dur="40s"  repeatCount="indefinite" calcMode="linear"
+      values="0;0;1;1;0;0" keyTimes="0;0.64159;0.64160;0.77772;0.77773;1"/>
+  </circle>
+  <circle cx="560" cy="104" r="8" fill="none" stroke="#00ffff" stroke-width="2" opacity="0">
+    <animate attributeName="r"       dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="8;8;8;22" keyTimes="0;0.77771;0.77773;0.79273"/>
+    <animate attributeName="opacity" dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="0;0;0.9;0" keyTimes="0;0.77771;0.77773;0.79273"/>
+  </circle>
+
+  <!-- ═══ CYBERSEC MESSAGES (flash 1.8s after each eat) ═══ -->
+  <!-- msg1 @ t=3.795s: VULNERABILITY SCANNED -->
+  <text x="450" y="28" text-anchor="middle" font-family="Courier New,monospace"
+        font-size="10" fill="#00ddff" letter-spacing="2" filter="url(#glow2)" opacity="0">
+    &gt; VULNERABILITY SCANNED
+    <animate attributeName="opacity" dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="0;0;1;1;0;0" keyTimes="0;0.09487;0.09489;0.13988;0.13990;1"/>
+  </text>
+
+  <!-- msg2 @ t=11.456s: EXPLOIT INJECTED -->
+  <text x="450" y="28" text-anchor="middle" font-family="Courier New,monospace"
+        font-size="10" fill="#00ddff" letter-spacing="2" filter="url(#glow2)" opacity="0">
+    &gt; EXPLOIT INJECTED
+    <animate attributeName="opacity" dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="0;0;1;1;0;0" keyTimes="0;0.28639;0.28641;0.33140;0.33142;1"/>
+  </text>
+
+  <!-- msg3 @ t=18.278s: FIREWALL BYPASSED -->
+  <text x="450" y="28" text-anchor="middle" font-family="Courier New,monospace"
+        font-size="10" fill="#00ddff" letter-spacing="2" filter="url(#glow2)" opacity="0">
+    &gt; FIREWALL BYPASSED
+    <animate attributeName="opacity" dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="0;0;1;1;0;0" keyTimes="0;0.45694;0.45696;0.50195;0.50197;1"/>
+  </text>
+
+  <!-- msg4 @ t=25.664s: ROOT ACCESS GRANTED -->
+  <text x="450" y="28" text-anchor="middle" font-family="Courier New,monospace"
+        font-size="10" fill="#00ddff" letter-spacing="2" filter="url(#glow2)" opacity="0">
+    &gt; ROOT ACCESS GRANTED
+    <animate attributeName="opacity" dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="0;0;1;1;0;0" keyTimes="0;0.64159;0.64161;0.68660;0.68662;1"/>
+  </text>
+
+  <!-- msg5 @ t=31.109s: TARGET COMPROMISED -->
+  <text x="450" y="28" text-anchor="middle" font-family="Courier New,monospace"
+        font-size="10" fill="#00ddff" letter-spacing="2" filter="url(#glow2)" opacity="0">
+    &gt; TARGET COMPROMISED
+    <animate attributeName="opacity" dur="40s" repeatCount="indefinite" calcMode="linear"
+      values="0;0;1;1;0;0" keyTimes="0;0.77772;0.77774;0.82273;0.82275;1"/>
+  </text>
 
   <!-- Footer label -->
-  <text x="450" y="136" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#440020" letter-spacing="4">EMIRCELIKSU · GITHUB CONTRIBUTIONS</text>
+  <text x="450" y="136" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#440020" letter-spacing="4">EMIRCELIKSU    GITHUB CONTRIBUTIONS</text>
 </svg>

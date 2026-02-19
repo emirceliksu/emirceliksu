@@ -1,7 +1,4 @@
-﻿<!-- MATRIX RAIN HEADER -->
-<div align="center">
-
-<img src="./assets/matrix.svg" width="100%" alt="matrix rain"/>
+﻿<div align="center">
 
 <!-- GLITCH BANNER -->
 <img src="./assets/banner.svg" width="100%" alt="glitch banner"/>
@@ -122,9 +119,6 @@
 <img src="./assets/snake.svg" width="100%" alt="contribution snake"/>
 
 </div>
-
-<!-- FOOTER -->
-<img src="./assets/matrix.svg" width="100%" alt="matrix footer"/>
 
 <div align="center">
 
