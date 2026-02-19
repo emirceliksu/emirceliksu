@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="background:transparent;">
+  <defs>
+    <filter id="shieldGlow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="innerGlow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#1a0010"/>
+      <stop offset="100%" stop-color="#06000d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rotating outer ring -->
+  <g transform="translate(100,100)">
+    <!-- Dashed outer ring -->
+    <circle r="90" fill="none" stroke="#ff0040" stroke-width="1" stroke-dasharray="8 4" opacity="0.5">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Inner ring dots -->
+    <circle r="82" fill="none" stroke="#ff0040" stroke-width="0.5" opacity="0.2"/>
+
+    <!-- Rotating outer ticks -->
+    <g opacity="0.6">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="30s" repeatCount="indefinite"/>
+      <line x1="0" y1="-82" x2="0" y2="-90" stroke="#00ffff" stroke-width="2"/>
+      <line x1="0" y1="-82" x2="0" y2="-90" stroke="#00ffff" stroke-width="2" transform="rotate(45)"/>
+      <line x1="0" y1="-82" x2="0" y2="-90" stroke="#00ffff" stroke-width="2" transform="rotate(90)"/>
+      <line x1="0" y1="-82" x2="0" y2="-90" stroke="#00ffff" stroke-width="2" transform="rotate(135)"/>
+      <line x1="0" y1="-82" x2="0" y2="-90" stroke="#00ffff" stroke-width="2" transform="rotate(180)"/>
+      <line x1="0" y1="-82" x2="0" y2="-90" stroke="#00ffff" stroke-width="2" transform="rotate(225)"/>
+      <line x1="0" y1="-82" x2="0" y2="-90" stroke="#00ffff" stroke-width="2" transform="rotate(270)"/>
+      <line x1="0" y1="-82" x2="0" y2="-90" stroke="#00ffff" stroke-width="2" transform="rotate(315)"/>
+    </g>
+  </g>
+
+  <!-- Shield shape -->
+  <g filter="url(#shieldGlow)">
+    <path d="M100 20 L165 48 L165 110 Q165 155 100 180 Q35 155 35 110 L35 48 Z"
+          fill="url(#shieldGrad)" stroke="#ff0040" stroke-width="2.5"/>
+  </g>
+
+  <!-- Shield inner border -->
+  <path d="M100 28 L158 53 L158 110 Q158 150 100 172 Q42 150 42 110 L42 53 Z"
+        fill="none" stroke="#ff0040" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Hexagon decoration inside shield -->
+  <polygon points="100,55 121,67 121,91 100,103 79,91 79,67"
+           fill="none" stroke="#00ffff" stroke-width="1.2" opacity="0.6"/>
+
+  <!-- MEC letters -->
+  <g filter="url(#innerGlow)">
+    <text x="100" y="105" text-anchor="middle"
+          font-family="'Courier New', monospace"
+          font-size="36" font-weight="bold"
+          fill="#ff0040" letter-spacing="2">MEC</text>
+  </g>
+
+  <!-- Bottom text inside shield -->
+  <text x="100" y="145" text-anchor="middle"
+        font-family="'Courier New', monospace"
+        font-size="8.5" fill="#00ffff" letter-spacing="3" opacity="0.8">CYBERSEC</text>
+
+  <!-- Pulsing center dot -->
+  <circle cx="100" cy="62" r="3" fill="#ff0040">
+    <animate attributeName="r"    values="3;5;3"   dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Outer glow pulse on shield -->
+  <path d="M100 20 L165 48 L165 110 Q165 155 100 180 Q35 155 35 110 L35 48 Z"
+        fill="none" stroke="#ff0040" stroke-width="6" opacity="0">
+    <animate attributeName="opacity" values="0;0.3;0" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-width" values="6;12;6" dur="3s" repeatCount="indefinite"/>
+  </path>
+</svg>
